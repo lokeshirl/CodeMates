@@ -1,0 +1,38 @@
+Major Project Description
+
+Name of the Project: Codemates --> code mates
+
+Features:
+
+Common popular Features
+
+1. User can write code in common programming languages like, cpp, java, python, JavaScript
+2. User can give provide input for their program.
+3. user can see the output console to view program's output.
+4. user can upload their code from pc to online editor.
+5. user can download their written code on online editor.
+6. user can live share their code with a mentor or a friend for peer programming or for doubt solving/debugging.
+7. user can chat with their mentor or a friend.
+
+Extra add-on Features
+
+1. Integrate AI assistant
+2. user can chat with AI assistant and can take help to debug their program
+3. user can generate programs.
+4. user can know time and space complexity of their program with help of AI assistant.
+5. user can use AI assistant for doubt solving.
+6. more more more (we will keep updating this project to make a best place for programmers).
+
+``````````````````````````````````````````````````````````````````````````````````
+
+Building the project:
+a. Start by breaking down the features of your project into smaller tasks.
+b. Use a project management tool like Trello or Asana to keep track of your tasks.
+c. Follow an agile methodology, where you build your project in iterations, and get feedback from your users at each iteration.
+d. Use version control software like Git to keep track of your code changes and collaborate with your team members.
+e. Test your code frequently and fix bugs as soon as you find them.
+f. Use a code editor like Visual Studio Code or PyCharm to write your code.
+
+Problem statement
+
+"Learning to code can be challenging, especially for beginners who may feel isolated and unsupported. Traditional programming resources may not provide the level of support and interaction that learners need. Codemates aims to address these challenges by providing a comprehensive online platform that empowers learners of all levels and backgrounds to learn and grow together, with features such as live programming sessions, an AI assistant for debugging, and communication with mentors."
