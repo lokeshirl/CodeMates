@@ -1,9 +1,39 @@
-import React from 'react'
+import React from 'react';
 
 const Hero = () => {
   return (
-    <div>Hero</div>
-  )
-}
+    <section id="hero">
+      {/* flex--container */}
+      <div className="container flex flex-col-reverse md:flex-row items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 ">
+        {/* left--item */}
+        <div className="flex flex-col space-y-12 md:w-1/2">
+          <h1 className="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left">
+            CodeMates:{' '}
+            <span className="font-medium">
+              Embrace Support, Embrace Success
+            </span>
+          </h1>
+          <p className="max-w sm text-center text-darkGrayishBlue md:text-left">
+            "Coding made collaborative. Learn, connect, and grow with
+            CodeMates."
+          </p>
+          <div className="flex justify-center md:justify-start">
+            <a
+              href="#"
+              className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full hover:bg-brightRedLight"
+            >
+              Try CodeMate
+            </a>
+          </div>
+        </div>
 
-export default Hero
+        {/* Image */}
+        <div className="">
+          <img src="src\assets\vector\hero-img.svg" alt="hero-section-image" />
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
