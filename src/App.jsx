@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react';
+import HomePage from './pages/HomePage';
 
 const App = () => {
   return (
     <>
-      <h1>Hello from CodeMates Home Page</h1>
+      <HomePage />
     </>
   );
 };
