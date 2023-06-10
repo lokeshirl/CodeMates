@@ -4,7 +4,9 @@ import HomePage from './pages/HomePage';
 const App = () => {
   return (
     <>
-      <HomePage />
+      <div className="font-IBM_Flex">
+        <HomePage />
+      </div>
     </>
   );
 };

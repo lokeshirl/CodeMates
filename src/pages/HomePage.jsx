@@ -11,7 +11,6 @@ const HomePage = () => {
   return (
     <>
       <div>
-        HomePage
         {/* navbar */}
         <Navbar />
         {/* hero-section */}
