@@ -16,13 +16,13 @@ const Navbar = () => {
         </div>
         {/* menu--items */}
         <div className="hidden md:flex space-x-6">
-          <a href="#" className="hover:text-darkGrayishBlue">
+          <a href="#hero" className="hover:text-darkGrayishBlue">
             Home
           </a>
-          <a href="#" className="hover:text-darkGrayishBlue">
+          <a href="#editor" className="hover:text-darkGrayishBlue">
             Editor
           </a>
-          <a href="#" className="hover:text-darkGrayishBlue">
+          <a href="#about" className="hover:text-darkGrayishBlue">
             Developers
           </a>
           <a href="#" className="hover:text-darkGrayishBlue">

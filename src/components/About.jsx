@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="testimonials">
+    <section id="about">
       {/* Container to heading and testm blocks */}
       <div className="max-w-6xl px-5 mx-auto mt-32 text-center">
         {/* Heading */}

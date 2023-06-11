@@ -2,7 +2,7 @@ import React from 'react'
 
 const Editor = () => {
   return (
-    <div>Editor</div>
+    <section id='editor'></section>
   )
 }
 
