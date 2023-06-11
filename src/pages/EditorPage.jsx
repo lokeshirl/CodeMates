@@ -1,7 +1,16 @@
 import React from 'react';
+import Editor from '../components/Editor';
+import Navbar from '../components/Navbar';
 
 const EditorPage = () => {
-  return <div>Hello from Editor Page</div>;
+  return (
+    <>
+      <div>
+        {/* <Navbar /> */}
+        <Editor />
+      </div>
+    </>
+  );
 };
 
 export default EditorPage;
