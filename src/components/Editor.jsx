@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import CodeEditor from '@monaco-editor/react';
-import files from "../defaultStubs";
+import files from '../defaultStubs';
+import {
+  cppIcon,
+  pythonIcon,
+  javaIcon,
+  javascriptIcon,
+  cIcon,
+} from '../assets';
 
 const Editor = () => {
-
-  const [fileName, setFileName] = useState("cpp");
-  const [inputLanguage, setInputLanguage] = useState("cpp");
-  const [outputLanguage, setOutputLanguage] = useState("python");
-  const [code, setCode] = useState("");
-  const [input, setInput] = useState("0");
-  const [output, setOutput] = useState("");
+  const [fileName, setFileName] = useState('cpp');
+  const [inputLanguage, setInputLanguage] = useState('cpp');
+  const [outputLanguage, setOutputLanguage] = useState('python');
+  const [code, setCode] = useState('');
+  const [input, setInput] = useState('0');
+  const [output, setOutput] = useState('');
   const [languageIcon, setLanguageIcon] = useState(cppIcon);
   const editorRef = useRef(null);
 
@@ -19,148 +25,67 @@ const Editor = () => {
     language: inputLanguage,
     input: input,
   };
-  const dataForConversion = {
-    inputCodeText: code,
-    inputLang: inputLanguage,
-    outputLang: outputLanguage,
-  };
 
-  const dataForCodeGeneration = {
-    instruction: " find minimum element in array",
-    language: "javascript",
+  const handleEditorDidMount = (editor, monaco) => {
+    editorRef.current = editor;
   };
 
   const handleSelectIcon = (e) => {
     switch (e.target.value) {
-      case "c":
+      case 'c':
         setLanguageIcon(cIcon);
-        setInputLanguage("c");
-        setFileName("c");
+        setInputLanguage('c');
+        setFileName('c');
         break;
-      case "python3":
+      case 'python3':
         setLanguageIcon(pythonIcon);
-        setFileName("python");
-        setInputLanguage("python");
+        setFileName('python');
+        setInputLanguage('python');
         break;
-      case "java":
+      case 'java':
         setLanguageIcon(javaIcon);
-        setFileName("java");
-        setInputLanguage("java");
+        setFileName('java');
+        setInputLanguage('java');
         break;
-      case "javascript":
+      case 'javascript':
         setLanguageIcon(javascriptIcon);
-        setFileName("javascript");
-        setInputLanguage("javascript");
+        setFileName('javascript');
+        setInputLanguage('javascript');
         break;
       default:
         setLanguageIcon(cppIcon);
-        setFileName("cpp");
-        setInputLanguage("cpp");
+        setFileName('cpp');
+        setInputLanguage('cpp');
         break;
     }
     console.log(e.target.value);
   };
 
-  const handleEditorDidMount = (editor, monaco) => {
-    editorRef.current = editor;
-  };
   const getEditorValue = () => {
     setCode(editorRef.current.getValue());
-    // axios
-    //   .post(COMPILER_API_URL, data)
-    //   .then((response) => {
-    //     console.log(response.data.output);
-    //   })
-    //   .catch((e) => console.log(e));
+    console.log(editorRef.current.getValue());
   };
-
-  const handleConvertCode = (e) => {
-    switch (e.target.value) {
-      case "c":
-        setOutputLanguage("c");
-        break;
-      case "python3":
-        setOutputLanguage("python");
-        break;
-      case "java":
-        setOutputLanguage("java");
-        break;
-      case "javascript":
-        setOutputLanguage("javascript");
-        break;
-      default:
-        setOutputLanguage("cpp");
-        break;
-    }
-  };
-
-  const handleConversion = () => {
-    getEditorValue();
-    // axios
-    //   .post(CODE_CONVERT_API_URL, dataForConversion)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((e) => console.log(e));
-  };
-
-  const handleClick = () => {
-    axios
-      .post(
-        "https://harkirat.classx.co.in/api/generate-code/",
-        dataForCodeGeneration
-      )
-      .then((response) => {
-        console.log(response.data.output);
-      })
-      .catch((e) => console.log(e));
-  };
-
 
   return (
     // editor
     <>
-      <header className="px-5 py-5 mt-1">
-        <button
-          onClick={() => {
-            handleClick();
-          }}
-        >
-          Generate
-        </button>
-        <nav>
+      <header>
+        <nav className="container ml-5">
           {/* language logo btn */}
-          <button>
+          <button className="mr-5">
             <img
               src={languageIcon}
-              className="image"
+              className="image inline-block"
               alt={`${inputLanguage} icon`}
             />
           </button>
           {/* language logo drop-down btn */}
-          <button>
+          <button className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 mr-5">
             <select onChange={handleSelectIcon}>
               <option value={'cpp'}>C++</option>
               <option value={'c'}>C</option>
               <option value={'java'}>Java</option>
               <option value={'python3'}>Python 3</option>
-              <option value={'javascript'}>Javascript</option>
-            </select>
-          </button>
-          {/* run btn */}
-          <span>
-            <button onClick={() => getEditorValue()}>Run</button>
-          </span>
-
-          <button className="ml-5" onClick={() => handleConversion()}>
-            convert code
-          </button>
-          <button>
-            <select onChange={handleConvertCode}>
-              <option value={'python3'}>Python 3</option>
-              <option value={'c'}>C</option>
-              <option value={'cpp'}>C++</option>
-              <option value={'java'}>Java</option>
               <option value={'javascript'}>Javascript</option>
             </select>
           </button>
@@ -174,7 +99,15 @@ const Editor = () => {
             className="flex flex-col w-full h-full justify-start items-end"
             id="code-editor"
           >
-            <CodeEditor height="85vh" width={`100%`} />
+            <CodeEditor
+              height="85vh"
+              width={`100%`}
+              theme="vs-dark"
+              path={file.name}
+              defaultLanguage={file.language}
+              defaultValue={file.value}
+              onMount={handleEditorDidMount}
+            />
           </div>
 
           {/* input-output */}
@@ -182,7 +115,7 @@ const Editor = () => {
             className="right-container flex flex-shrink-0 w-[30%] flex-col"
             id="std-input-output"
           >
-            <h1 class="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
+            <h1 className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-700 mb-2">
               Output
             </h1>
             <div
@@ -193,11 +126,22 @@ const Editor = () => {
               <textarea
                 rows="5"
                 placeholder="Custom input"
-                class="focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
+                className="focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
               ></textarea>
-              <button class="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 ">
-                Compile and Execute
-              </button>
+              <div>
+                <button
+                  className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 mr-5"
+                  onClick={() => getEditorValue()}
+                >
+                  Explain code
+                </button>
+                <button
+                  className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 "
+                  onClick={() => getEditorValue()}
+                >
+                  Compile and Execute
+                </button>
+              </div>
             </div>
           </div>
         </div>
