@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
@@ -33,7 +34,7 @@ const About = () => {
             />
             <h5 className="text-lg font-bold">Ankur Singh</h5>
             <p className="text-sm text-darkGrayishBlue">
-            "CodeMates: Empowering Beginners, Connecting Coding Enthusiasts"
+              "CodeMates: Empowering Beginners, Connecting Coding Enthusiasts"
             </p>
           </div>
           {/* Testimonial 3 */}
@@ -45,7 +46,7 @@ const About = () => {
             />
             <h5 className="text-lg font-bold">Mukund Thakur</h5>
             <p className="text-sm text-darkGrayishBlue">
-            "CodeMates: Empowering Beginners, Inspiring Collaboration"
+              "CodeMates: Empowering Beginners, Inspiring Collaboration"
             </p>
           </div>
           {/* Testimonial 4 */}
@@ -57,18 +58,18 @@ const About = () => {
             />
             <h5 className="text-lg font-bold">Ashutosh</h5>
             <p className="text-sm text-darkGrayishBlue">
-            "CodeMates: Building Confidence, One Line of Code at a Time"
+              "CodeMates: Building Confidence, One Line of Code at a Time"
             </p>
           </div>
         </div>
         {/* Button */}
         <div className="my-16">
-          <a
-            href="#"
-            className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full baseline hover:bg-brightRedLight"
+          <Link
+            to="/editor"
+            className="hidden border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 md:block"
           >
-            Get Started
-          </a>
+            Try CodeMate
+          </Link>
         </div>
       </div>
     </section>

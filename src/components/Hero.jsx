@@ -1,4 +1,6 @@
 import React from 'react';
+import { hero } from '../assets';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -18,18 +20,18 @@ const Hero = () => {
             CodeMates."
           </p>
           <div className="flex justify-center md:justify-start">
-            <a
-              href="#"
-              className="p-3 px-6 pt-2 text-white bg-brightRed rounded-full hover:bg-brightRedLight"
+            <Link
+              to="/editor"
+              className="hidden border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 md:block"
             >
               Try CodeMate
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Image */}
         <div className="">
-          <img src="src\assets\vector\hero-img.svg" alt="hero-section-image" />
+          <img src={hero} alt="hero-section-image" />
         </div>
       </div>
     </section>

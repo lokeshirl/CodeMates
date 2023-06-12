@@ -1,7 +1,7 @@
 const files = {
   python: {
-    name: "python",
-    language: "python",
+    name: 'python',
+    language: 'python',
     value: `# python3
 import sys
 sys.stdin  = open(sys.argv[1])
@@ -11,8 +11,8 @@ print("Hello Python geek !!!")
     `,
   },
   java: {
-    name: "java",
-    language: "java",
+    name: 'java',
+    language: 'java',
     value: `// Your First Program
 
 class Main {
@@ -23,9 +23,10 @@ class Main {
     `,
   },
   cpp: {
-    name: "cpp",
-    language: "cpp",
-    value: `
+    name: 'cpp',
+    language: 'cpp',
+    value: `// Your First Program
+    
 #include <iostream>
 using namespace std;
     
@@ -36,13 +37,13 @@ int main() {
     `,
   },
   javascript: {
-    name: "javascript",
-    language: "javascript",
+    name: 'javascript',
+    language: 'javascript',
     value: `console.log("Hello from javascript")`,
   },
   c: {
-    name: "c",
-    language: "c",
+    name: 'c',
+    language: 'c',
     value: `
 #include <stdio.h>
 

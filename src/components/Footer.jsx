@@ -91,9 +91,15 @@ const Footer = () => {
                 className="flex-1 px-4 rounded-full focus:outline-none"
                 placeholder="Updated in your inbox"
               />
-              <button className="px-6 py-2 text-white rounded-full bg-brightRed hover:bg-brightRedLight focus:outline-none">
+              {/* <button className="px-6 py-2 text-white rounded-full bg-brightRed hover:bg-brightRedLight focus:outline-none">
                 Go
-              </button>
+              </button> */}
+              <a
+                href="#"
+                className="border-2 border-black z-10 rounded-full shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0"
+              >
+                Go
+              </a>
             </div>
           </form>
           <div className="hidden text-white md:block">

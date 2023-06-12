@@ -20,9 +20,9 @@ const ExplainCodeMates = () => {
           {/* List Item 1 */}
           <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
             {/* Heading */}
-            <div className="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div className="rounded-l-full bg-slate-200 md:bg-transparent">
               <div className="flex items-center space-x-2">
-                <div className="px-4 py-2 text-white rounded-full md:py-1 bg-brightRed">
+                <div className="px-4 py-2 rounded-full md:py-1 border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0)]">
                   01
                 </div>
                 <h3 className="text-base font-bold md:mb-4 md:hidden">
@@ -45,9 +45,9 @@ const ExplainCodeMates = () => {
           {/* List Item 2 */}
           <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
             {/* Heading */}
-            <div className="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div className="rounded-l-full bg-slate-200 md:bg-transparent">
               <div className="flex items-center space-x-2">
-                <div className="px-4 py-2 text-white rounded-full md:py-1 bg-brightRed">
+                <div className="px-4 py-2 rounded-full md:py-1 border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0)]">
                   02
                 </div>
                 <h3 className="text-base font-bold md:mb-4 md:hidden">
@@ -60,16 +60,18 @@ const ExplainCodeMates = () => {
                 Built-in AI Assitant
               </h3>
               <p className="text-darkGrayishBlue">
-                As a beginner, you are prone to see errors and bugs in your program. So, just use our AI assistant that will explain your code step by step and will guide you to solve errors.
+                As a beginner, you are prone to see errors and bugs in your
+                program. So, just use our AI assistant that will explain your
+                code step by step and will guide you to solve errors.
               </p>
             </div>
           </div>
           {/* List Item 3 */}
           <div className="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
             {/* Heading */}
-            <div className="rounded-l-full bg-brightRedSupLight md:bg-transparent">
+            <div className="rounded-l-full bg-slate-200 md:bg-transparent">
               <div className="flex items-center space-x-2">
-                <div className="px-4 py-2 text-white rounded-full md:py-1 bg-brightRed">
+                <div className="px-4 py-2 rounded-full md:py-1 border-2 border-black shadow-[5px_5px_0px_0px_rgba(0,0,0)]">
                   03
                 </div>
                 <h3 className="text-base font-bold md:mb-4 md:hidden">
@@ -82,7 +84,10 @@ const ExplainCodeMates = () => {
                 Convert code from one programming language to other
               </h3>
               <p className="text-darkGrayishBlue">
-                Stop struggling in code conversion, use our code conversion tool to convert one programming language to other. Although Conversions are not always 100% accurate and need to be supervised by a human! 
+                Stop struggling in code conversion, use our code conversion tool
+                to convert one programming language to other. Although
+                Conversions are not always 100% accurate and need to be
+                supervised by a human!
               </p>
             </div>
           </div>
