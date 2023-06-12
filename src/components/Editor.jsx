@@ -49,7 +49,9 @@ const Editor = () => {
     }
   };
 
-  const handleInputChange = () => {};
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+  };
 
   const handleSelectIcon = (e) => {
     switch (e.target.value) {
@@ -142,7 +144,7 @@ const Editor = () => {
               className="w-full h-56 bg-[#1e293b] rounded-md text-white font-normal text-sm overflow-y-auto"
               id="output"
             >
-              <pre>{output}</pre>
+              <pre className="mt-4 ml-4">{output}</pre>
             </div>
             <div className="flex flex-col items-end" id="input">
               <textarea
