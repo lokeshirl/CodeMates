@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import axios from 'axios';
 import CodeEditor from '@monaco-editor/react';
 import files from '../defaultStubs';
 import {
@@ -19,16 +20,36 @@ const Editor = () => {
   const [languageIcon, setLanguageIcon] = useState(cppIcon);
   const editorRef = useRef(null);
 
+  const viteENV = import.meta.env;
+
   const file = files[fileName];
-  const dataForCompiler = {
+  const payloadCompiler = {
     code: code,
     language: inputLanguage,
     input: input,
   };
+  const COMPILER_API = viteENV.VITE_REACT_API_COMPILER_API;
 
-  const handleEditorDidMount = (editor, monaco) => {
-    editorRef.current = editor;
+  const handleEditorChange = (value, event) => {
+    setCode(value);
   };
+
+  const handleCompiler = async () => {
+    if (payloadCompiler.code) {
+      try {
+        const response = await axios.post(COMPILER_API, payloadCompiler);
+        response.data.output
+          ? setOutput(response.data.output)
+          : setOutput(response.data.error);
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      setOutput('Modify your Code in Editor :D');
+    }
+  };
+
+  const handleInputChange = () => {};
 
   const handleSelectIcon = (e) => {
     switch (e.target.value) {
@@ -59,11 +80,6 @@ const Editor = () => {
         break;
     }
     console.log(e.target.value);
-  };
-
-  const getEditorValue = () => {
-    setCode(editorRef.current.getValue());
-    console.log(editorRef.current.getValue());
   };
 
   return (
@@ -106,7 +122,11 @@ const Editor = () => {
               path={file.name}
               defaultLanguage={file.language}
               defaultValue={file.value}
-              onMount={handleEditorDidMount}
+              // onMount={handleEditorDidMount}
+              options={{
+                fontSize: 20,
+              }}
+              onChange={handleEditorChange}
             />
           </div>
 
@@ -122,24 +142,22 @@ const Editor = () => {
               className="w-full h-56 bg-[#1e293b] rounded-md text-white font-normal text-sm overflow-y-auto"
               id="output"
             >
-              Hello World
+              <pre>{output}</pre>
             </div>
             <div className="flex flex-col items-end" id="input">
               <textarea
-                rows="5"
                 placeholder="Custom input"
+                rows={14}
                 className="focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
+                onChange={handleInputChange}
               ></textarea>
               <div>
-                <button
-                  className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 mr-5"
-                  onClick={() => getEditorValue()}
-                >
+                <button className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 mr-5">
                   Explain code
                 </button>
                 <button
                   className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 "
-                  onClick={() => getEditorValue()}
+                  onClick={() => handleCompiler()}
                 >
                   Compile and Execute
                 </button>
