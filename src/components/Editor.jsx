@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Configuration, OpenAIApi } from 'openai';
 import axios from 'axios';
 import CodeEditor from '@monaco-editor/react';
 import files from '../defaultStubs';
@@ -22,13 +23,29 @@ const Editor = () => {
 
   const viteENV = import.meta.env;
 
+  const configuration = new Configuration({
+    apiKey: viteENV.VITE_REACT_API_OPENAI_API_KEY,
+  });
+  const COMPILER_API = viteENV.VITE_REACT_API_COMPILER_API_KEY;
+
+  const openai = new OpenAIApi(configuration);
   const file = files[fileName];
   const payloadCompiler = {
     code: code,
     language: inputLanguage,
     input: input,
   };
-  const COMPILER_API = viteENV.VITE_REACT_API_COMPILER_API;
+  
+  const response = openai.createCompletion({
+    model: 'text-davinci-003',
+    prompt: code,
+    temperature: 0,
+    max_tokens: 150,
+    top_p: 1.0,
+    frequency_penalty: 0.0,
+    presence_penalty: 0.0,
+    stop: ['"""'],
+  });
 
   const handleEditorChange = (value, event) => {
     setCode(value);
