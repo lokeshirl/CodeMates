@@ -19,7 +19,7 @@ const Editor = () => {
   const [input, setInput] = useState('0');
   const [output, setOutput] = useState('');
   const [languageIcon, setLanguageIcon] = useState(cppIcon);
-  const editorRef = useRef(null);
+  const [aIOutput, setAIOutput] = useState('');
 
   const viteENV = import.meta.env;
 
@@ -29,23 +29,13 @@ const Editor = () => {
   const COMPILER_API = viteENV.VITE_REACT_API_COMPILER_API_KEY;
 
   const openai = new OpenAIApi(configuration);
+
   const file = files[fileName];
   const payloadCompiler = {
     code: code,
     language: inputLanguage,
     input: input,
   };
-  
-  const response = openai.createCompletion({
-    model: 'text-davinci-003',
-    prompt: code,
-    temperature: 0,
-    max_tokens: 150,
-    top_p: 1.0,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0,
-    stop: ['"""'],
-  });
 
   const handleEditorChange = (value, event) => {
     setCode(value);
@@ -64,6 +54,53 @@ const Editor = () => {
     } else {
       setOutput('Modify your Code in Editor :D');
     }
+  };
+
+  const handleExplainCode = async () => {
+    setAIOutput('');
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: code,
+      temperature: 0,
+      max_tokens: 150,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      stop: ['"""'],
+    });
+
+    setAIOutput(response.data.choices[0].text);
+  };
+  const handleTimeComplexity = async () => {
+    setAIOutput('');
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: code,
+      temperature: 0,
+      max_tokens: 64,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      stop: ['\n'],
+    });
+
+    setAIOutput(response.data.choices[0].text);
+  };
+
+  const handleFixBug = async () => {
+    setCode('');
+    const response = await openai.createCompletion({
+      model: 'text-davinci-003',
+      prompt: code,
+      temperature: 0,
+      max_tokens: 182,
+      top_p: 1.0,
+      frequency_penalty: 0.0,
+      presence_penalty: 0.0,
+      stop: ['###'],
+    });
+    console.log(response);
+    setCode(response.data.choices[0].text);
   };
 
   const handleInputChange = (e) => {
@@ -124,6 +161,13 @@ const Editor = () => {
               <option value={'javascript'}>Javascript</option>
             </select>
           </button>
+
+          <button
+            className="mt-4 ml-10 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0"
+            onClick={() => handleFixBug()}
+          >
+            Fix "Py"🐍
+          </button>
         </nav>
       </header>
       <section id="editor">
@@ -166,14 +210,11 @@ const Editor = () => {
             <div className="flex flex-col items-end" id="input">
               <textarea
                 placeholder="Custom input"
-                rows={14}
+                rows={8}
                 className="focus:outline-none w-full border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white mt-2"
                 onChange={handleInputChange}
               ></textarea>
               <div>
-                <button className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 mr-5">
-                  Explain code
-                </button>
                 <button
                   className="mt-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 "
                   onClick={() => handleCompiler()}
@@ -183,6 +224,34 @@ const Editor = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="ai-features">
+        <div className="ai-feature-group mb-10">
+          <button
+            className="mt-4 ml-4 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0 mr-5"
+            id="explainCode"
+            onClick={() => handleExplainCode()}
+          >
+            Explain code
+          </button>
+
+          <button
+            className="mt-4 ml-10 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0"
+            onClick={() => handleTimeComplexity()}
+          >
+            Know Complexity
+          </button>
+
+          <button
+            className="mt-4 ml-10 border-2 border-black z-10 rounded-md shadow-[5px_5px_0px_0px_rgba(0,0,0)] px-4 py-2 hover:shadow transition duration-200 bg-white flex-shrink-0"
+            onClick={() => handleAIFeatures()}
+          >
+            Translate Program
+          </button>
+        </div>
+        <div className="ai-feature-output w-[97.5%] ml-4 mb-10 h-56 bg-[#1e293b] rounded-md text-white font-normal text-sm overflow-y-auto">
+          <pre className="mt-4 ml-4">{aIOutput}</pre>
         </div>
       </section>
     </>
