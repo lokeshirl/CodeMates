@@ -52,7 +52,7 @@ const About = () => {
           {/* Testimonial 4 */}
           <div className="hidden flex-col items-center p-6 space-y-6 rounded-lg bg-veryLightGray md:flex md:w-1/3">
             <img
-              src="src\assets\avatar-richard.png"
+              src="src\assets\avatar-ashutosh.jpg"
               className="w-16 -mt-14 rounded-full"
               alt=""
             />

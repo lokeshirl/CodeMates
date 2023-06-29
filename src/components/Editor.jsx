@@ -117,7 +117,7 @@ const Editor = () => {
       case 'python3':
         setLanguageIcon(pythonIcon);
         setFileName('python');
-        setInputLanguage('python');
+        setInputLanguage('py');
         break;
       case 'java':
         setLanguageIcon(javaIcon);
@@ -127,7 +127,7 @@ const Editor = () => {
       case 'javascript':
         setLanguageIcon(javascriptIcon);
         setFileName('javascript');
-        setInputLanguage('javascript');
+        setInputLanguage('js');
         break;
       default:
         setLanguageIcon(cppIcon);
